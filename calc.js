@@ -23,41 +23,40 @@ const world_speed = document.getElementById("world");
 const world_price = document.getElementById("world-price");
 
 const summ = document.getElementById("summ");
-const form = document.getElementById("form");
 
 summ.innerText =
-  Number(vcpu_price.innerText.split(" ")[0]) +
-  Number(ram_price.innerText.split(" ")[0]) +
-  Number(world_price.innerText.split(" ")[0]) +
-  Number(hdd7k_price.innerText.split(" ")[0]) +
-  Number(hdd10k_price.innerText.split(" ")[0]) +
-  Number(ssd_price.innerText.split(" ")[0]) +
-  Number(hdd15k_price.innerText.split(" ")[0]) +
-  Number(tasix_price.innerText.split(" ")[0]) +
-  " $";
+  Number(vcpu_price.innerText.split("$")[0]) +
+  Number(ram_price.innerText.split("$")[0]) +
+  Number(world_price.innerText.split("$")[0]) +
+  Number(hdd7k_price.innerText.split("$")[0]) +
+  Number(hdd10k_price.innerText.split("$")[0]) +
+  Number(ssd_price.innerText.split("$")[0]) +
+  Number(hdd15k_price.innerText.split("$")[0]) +
+  Number(tasix_price.innerText.split("$")[0]) +
+  "$";
 
 vcpu_count.oninput = (e) => {
   const count = Number(e.target.value);
   switch (count) {
     case 0:
       vcpu_count.value = 1;
-      vcpu_price.innerText = 20 + " $";
+      vcpu_price.innerText = 20 + "$";
       break;
     case 1:
-      vcpu_price.innerText = 20 + " $";
+      vcpu_price.innerText = 20 + "$";
   }
   if (!isNaN(count) && count !== 0) {
-    vcpu_price.innerText = count * 20 + " $";
+    vcpu_price.innerText = count * 20 + "$";
   }
   summ.innerText =
-    Number(vcpu_price.innerText.split(" ")[0]) +
-    Number(ram_price.innerText.split(" ")[0]) +
-    Number(world_price.innerText.split(" ")[0]) +
-    Number(hdd7k_price.innerText.split(" ")[0]) +
-    Number(hdd10k_price.innerText.split(" ")[0]) +
-    Number(ssd_price.innerText.split(" ")[0]) +
-    Number(hdd15k_price.innerText.split(" ")[0]) +
-    Number(tasix_price.innerText.split(" ")[0]) +
+    Number(vcpu_price.innerText.split("$")[0]) +
+    Number(ram_price.innerText.split("$")[0]) +
+    Number(world_price.innerText.split("$")[0]) +
+    Number(hdd7k_price.innerText.split("$")[0]) +
+    Number(hdd10k_price.innerText.split("$")[0]) +
+    Number(ssd_price.innerText.split("$")[0]) +
+    Number(hdd15k_price.innerText.split("$")[0]) +
+    Number(tasix_price.innerText.split("$")[0]) +
     " $";
 };
 
@@ -66,137 +65,141 @@ ram_count.oninput = (e) => {
   switch (count) {
     case 0:
       ram_count.value = 1;
-      ram_price.innerText = 20 + " $";
+      ram_price.innerText = 20 + "$";
       break;
     case 1:
-      ram_price.innerText = 20 + " $";
+      ram_price.innerText = 20 + "$";
   }
   if (!isNaN(count) && count !== 0) {
-    ram_price.innerText = count * 20 + " $";
+    ram_price.innerText = count * 20 + "$";
   }
   summ.innerText =
-    Number(vcpu_price.innerText.split(" ")[0]) +
-    Number(ram_price.innerText.split(" ")[0]) +
-    Number(world_price.innerText.split(" ")[0]) +
-    Number(hdd7k_price.innerText.split(" ")[0]) +
-    Number(hdd10k_price.innerText.split(" ")[0]) +
-    Number(ssd_price.innerText.split(" ")[0]) +
-    Number(hdd15k_price.innerText.split(" ")[0]) +
-    Number(tasix_price.innerText.split(" ")[0]) +
+    Number(vcpu_price.innerText.split("$")[0]) +
+    Number(ram_price.innerText.split("$")[0]) +
+    Number(world_price.innerText.split("$")[0]) +
+    Number(hdd7k_price.innerText.split("$")[0]) +
+    Number(hdd10k_price.innerText.split("$")[0]) +
+    Number(ssd_price.innerText.split("$")[0]) +
+    Number(hdd15k_price.innerText.split("$")[0]) +
+    Number(tasix_price.innerText.split("$")[0]) +
     " $";
 };
 
 hdd7k_count.oninput = (e) => {
   const count = Number(e.target.value);
   if (!isNaN(count) && count !== 0) {
-    hdd7k_price.innerText = count * 20 + " $";
+    hdd7k_price.innerText = count * 20 + "$";
   } else {
-    hdd7k_price.innerText = "0 $";
+    hdd7k_price.innerText = "0$";
   }
   summ.innerText =
-    Number(vcpu_price.innerText.split(" ")[0]) +
-    Number(ram_price.innerText.split(" ")[0]) +
-    Number(world_price.innerText.split(" ")[0]) +
-    Number(hdd7k_price.innerText.split(" ")[0]) +
-    Number(hdd10k_price.innerText.split(" ")[0]) +
-    Number(ssd_price.innerText.split(" ")[0]) +
-    Number(hdd15k_price.innerText.split(" ")[0]) +
-    Number(tasix_price.innerText.split(" ")[0]) +
-    " $";
+    Number(vcpu_price.innerText.split("$")[0]) +
+    Number(ram_price.innerText.split("$")[0]) +
+    Number(world_price.innerText.split("$")[0]) +
+    Number(hdd7k_price.innerText.split("$")[0]) +
+    Number(hdd10k_price.innerText.split("$")[0]) +
+    Number(ssd_price.innerText.split("$")[0]) +
+    Number(hdd15k_price.innerText.split("$")[0]) +
+    Number(tasix_price.innerText.split("$")[0]) +
+    "$";
 };
 
 hdd10k_count.oninput = (e) => {
   const count = Number(e.target.value);
   if (!isNaN(count) && count !== 0) {
-    hdd10k_price.innerText = count * 20 + " $";
+    hdd10k_price.innerText = count * 20 + "$";
   } else {
-    hdd10k_price.innerText = "0 $";
+    hdd10k_price.innerText = "0$";
   }
   summ.innerText =
-    Number(vcpu_price.innerText.split(" ")[0]) +
-    Number(ram_price.innerText.split(" ")[0]) +
-    Number(world_price.innerText.split(" ")[0]) +
-    Number(hdd7k_price.innerText.split(" ")[0]) +
-    Number(hdd10k_price.innerText.split(" ")[0]) +
-    Number(ssd_price.innerText.split(" ")[0]) +
-    Number(hdd15k_price.innerText.split(" ")[0]) +
-    Number(tasix_price.innerText.split(" ")[0]) +
-    " $";
+    Number(vcpu_price.innerText.split("$")[0]) +
+    Number(ram_price.innerText.split("$")[0]) +
+    Number(world_price.innerText.split("$")[0]) +
+    Number(hdd7k_price.innerText.split("$")[0]) +
+    Number(hdd10k_price.innerText.split("$")[0]) +
+    Number(ssd_price.innerText.split("$")[0]) +
+    Number(hdd15k_price.innerText.split("$")[0]) +
+    Number(tasix_price.innerText.split("$")[0]) +
+    "$";
 };
 
 hdd15k_count.oninput = (e) => {
   const count = Number(e.target.value);
   if (!isNaN(count) && count !== 0) {
-    hdd15k_price.innerText = count * 20 + " $";
+    hdd15k_price.innerText = count * 20 + "$";
   } else {
-    hdd15k_price.innerText = "0 $";
+    hdd15k_price.innerText = "0$";
   }
   summ.innerText =
-    Number(vcpu_price.innerText.split(" ")[0]) +
-    Number(ram_price.innerText.split(" ")[0]) +
-    Number(world_price.innerText.split(" ")[0]) +
-    Number(hdd7k_price.innerText.split(" ")[0]) +
-    Number(hdd10k_price.innerText.split(" ")[0]) +
-    Number(ssd_price.innerText.split(" ")[0]) +
-    Number(hdd15k_price.innerText.split(" ")[0]) +
-    Number(tasix_price.innerText.split(" ")[0]) +
-    " $";
+    Number(vcpu_price.innerText.split("$")[0]) +
+    Number(ram_price.innerText.split("$")[0]) +
+    Number(world_price.innerText.split("$")[0]) +
+    Number(hdd7k_price.innerText.split("$")[0]) +
+    Number(hdd10k_price.innerText.split("$")[0]) +
+    Number(ssd_price.innerText.split("$")[0]) +
+    Number(hdd15k_price.innerText.split("$")[0]) +
+    Number(tasix_price.innerText.split("$")[0]) +
+    "$";
 };
 
 ssd_count.oninput = (e) => {
   const count = Number(e.target.value);
   if (!isNaN(count) && count !== 0) {
-    ssd_price.innerText = count * 20 + " $";
+    ssd_price.innerText = count * 20 + "$";
   } else {
-    ssd_price.innerText = "0 $";
+    ssd_price.innerText = "0$";
   }
   summ.innerText =
-    Number(vcpu_price.innerText.split(" ")[0]) +
-    Number(ram_price.innerText.split(" ")[0]) +
-    Number(world_price.innerText.split(" ")[0]) +
-    Number(hdd7k_price.innerText.split(" ")[0]) +
-    Number(hdd10k_price.innerText.split(" ")[0]) +
-    Number(ssd_price.innerText.split(" ")[0]) +
-    Number(hdd15k_price.innerText.split(" ")[0]) +
-    Number(tasix_price.innerText.split(" ")[0]) +
-    " $";
+    Number(vcpu_price.innerText.split("$")[0]) +
+    Number(ram_price.innerText.split("$")[0]) +
+    Number(world_price.innerText.split("$")[0]) +
+    Number(hdd7k_price.innerText.split("$")[0]) +
+    Number(hdd10k_price.innerText.split("$")[0]) +
+    Number(ssd_price.innerText.split("$")[0]) +
+    Number(hdd15k_price.innerText.split("$")[0]) +
+    Number(tasix_price.innerText.split("$")[0]) +
+    "$";
 };
 
 tasix_speed.oninput = (e) => {
   const count = Number(e.target.value);
   if (!isNaN(count) && count !== 0) {
-    tasix_price.innerText = count * 20 + " $";
+    tasix_price.innerText = count * 20 + "$";
   } else {
-    tasix_price.innerText = "0 $";
+    tasix_price.innerText = "0$";
   }
 
   summ.innerText =
-    Number(vcpu_price.innerText.split(" ")[0]) +
-    Number(ram_price.innerText.split(" ")[0]) +
-    Number(world_price.innerText.split(" ")[0]) +
-    Number(hdd7k_price.innerText.split(" ")[0]) +
-    Number(hdd10k_price.innerText.split(" ")[0]) +
-    Number(ssd_price.innerText.split(" ")[0]) +
-    Number(hdd15k_price.innerText.split(" ")[0]) +
-    Number(tasix_price.innerText.split(" ")[0]) +
-    " $";
+    Number(vcpu_price.innerText.split("$")[0]) +
+    Number(ram_price.innerText.split("$")[0]) +
+    Number(world_price.innerText.split("$")[0]) +
+    Number(hdd7k_price.innerText.split("$")[0]) +
+    Number(hdd10k_price.innerText.split("$")[0]) +
+    Number(ssd_price.innerText.split("$")[0]) +
+    Number(hdd15k_price.innerText.split("$")[0]) +
+    Number(tasix_price.innerText.split("$")[0]) +
+    "$";
 };
 
 world_speed.oninput = (e) => {
   const count = Number(e.target.value);
   if (!isNaN(count) && count !== 0) {
-    world_price.innerText = count * 20 + " $";
+    world_price.innerText = count * 20 + "$";
   } else {
-    world_price.innerText = "0 $";
+    world_price.innerText = "0$";
   }
   summ.innerText =
-    Number(vcpu_price.innerText.split(" ")[0]) +
-    Number(ram_price.innerText.split(" ")[0]) +
-    Number(world_price.innerText.split(" ")[0]) +
-    Number(hdd7k_price.innerText.split(" ")[0]) +
-    Number(hdd10k_price.innerText.split(" ")[0]) +
-    Number(ssd_price.innerText.split(" ")[0]) +
-    Number(hdd15k_price.innerText.split(" ")[0]) +
-    Number(tasix_price.innerText.split(" ")[0]) +
-    " $";
+    Number(vcpu_price.innerText.split("$")[0]) +
+    Number(ram_price.innerText.split("$")[0]) +
+    Number(world_price.innerText.split("$")[0]) +
+    Number(hdd7k_price.innerText.split("$")[0]) +
+    Number(hdd10k_price.innerText.split("$")[0]) +
+    Number(ssd_price.innerText.split("$")[0]) +
+    Number(hdd15k_price.innerText.split("$")[0]) +
+    Number(tasix_price.innerText.split("$")[0]) +
+    "$";
 };
+
+function handleClick() {
+  console.log("clicked");
+}

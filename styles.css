@@ -9,7 +9,19 @@ body {
   width: 100vw;
   height: 100vh;
   align-items: center;
+}
+
+.calc {
+  width: 100%;
+}
+
+.calc-inputs {
+  display: flex;
   justify-content: center;
+}
+
+.calc-inputs input {
+  width: 150px !important;
 }
 
 .calc-row {
@@ -22,4 +34,8 @@ body {
 .prices {
   min-width: 100px;
   margin-bottom: 0;
+}
+
+table th {
+  width: 100px;
 }
