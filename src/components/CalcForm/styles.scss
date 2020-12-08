@@ -1,0 +1,123 @@
+.calc {
+  min-height: calc(100vh - 80px);
+  padding-bottom: 150px;
+  background-color: #f8f8f8;
+
+  &-overall {
+    text-align: center;
+    padding-top: 30px;
+    margin-bottom: 40px;
+    & span {
+      color: #000000;
+      font-size: 36px;
+    }
+
+    &__value {
+      color: #285c91 !important;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+  }
+
+  &-card {
+    max-width: 660px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__item {
+      display: flex;
+      align-items: center;
+    }
+
+    &__label {
+      display: flex;
+      gap: 10px;
+      min-width: 170px;
+      margin-right: 27px;
+      font-size: 18px;
+      color: #000000;
+    }
+
+    &__input {
+      background: #ffffff;
+      border: 1px solid #d2e3f5;
+      width: 150px;
+      border-radius: 7px;
+      height: 42px;
+      font-size: 20px;
+      & input {
+        height: 42px;
+      }
+    }
+
+    &__type {
+      color: #8b8b8b;
+      font-size: 18px;
+      margin-left: 20px;
+      min-width: 66px;
+      margin-right: 13px;
+    }
+
+    &__price {
+      color: #285c91;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+  &-info {
+    font-size: 10px;
+    color: #8b8b8b;
+    margin-bottom: 0;
+  }
+
+  &-btns {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+
+    &__item {
+      width: 220px;
+      height: 48px;
+      font-weight: bold;
+      color: #fff;
+      border-radius: 10px;
+
+      &:hover {
+        color: #fff;
+      }
+
+      &:focus {
+        color: #fff;
+      }
+    }
+
+    .add {
+      background-color: #285c91;
+
+      &:hover {
+        background-color: #0f75de;
+        box-shadow: 0px 4px 20px #0f75de;
+      }
+    }
+
+    .clear {
+      background-color: #a5b4c2;
+    }
+  }
+
+  .ant-form-item {
+    margin-bottom: 0;
+  }
+}
