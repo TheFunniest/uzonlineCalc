@@ -1,42 +1,35 @@
 import { Drawer, Table } from "antd";
-import React, { createContext, useState } from "react";
-import { columns, data } from "./tableData";
+import React, { useContext } from "react";
+import { columns } from "./tableData";
+import { AppContext } from "../../App";
 import "./styles.scss";
 import DeleteModal from "./deleteModal";
 
-export const DrawerContext = createContext();
-
 const BottomDrawer = ({ visible, onClose }) => {
-  const [showDelete, setShowDelete] = useState(false);
+  const { tableData } = useContext(AppContext);
+
   return (
-    <DrawerContext.Provider
-      value={{
-        showDelete,
-        setShowDelete,
-      }}
+    <Drawer
+      closable={false}
+      placement="bottom"
+      onClose={onClose}
+      visible={visible}
+      height="auto"
     >
-      <Drawer
-        closable={false}
-        placement="bottom"
-        onClose={onClose}
-        visible={visible}
-        height="auto"
-      >
-        <div className="container">
-          <Table
-            className="calc-table"
-            dataSource={data}
-            columns={columns}
-            pagination={{
-              style: {
-                display: "none",
-              },
-            }}
-          />
-        </div>
-        <DeleteModal />
-      </Drawer>
-    </DrawerContext.Provider>
+      <div className="container">
+        <Table
+          className="calc-table"
+          dataSource={tableData}
+          columns={columns}
+          pagination={{
+            style: {
+              display: "none",
+            },
+          }}
+        />
+      </div>
+      <DeleteModal />
+    </Drawer>
   );
 };
 

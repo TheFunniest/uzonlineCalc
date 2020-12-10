@@ -1,16 +1,16 @@
 import { ReactComponent as RemoveIcon } from "../../img/remove 1.svg";
 import React, { useContext } from "react";
-import { DrawerContext } from "./index";
+import { AppContext } from "../../App";
 
-const DeleteIcon = () => {
-  const { setShowDelete } = useContext(DrawerContext);
-
+const DeleteIcon = ({ item }) => {
+  const { setShowDelete, setDeletingItem } = useContext(AppContext);
   return (
     <RemoveIcon
       style={{
         cursor: "pointer",
       }}
       onClick={() => {
+        setDeletingItem(item);
         setShowDelete(true);
       }}
     />
@@ -67,6 +67,9 @@ export const columns = [
     key: "remove",
     dataIndex: "remove",
     width: 50,
+    render: (text, record) => {
+      return <DeleteIcon item={record} />;
+    },
   },
 ];
 
@@ -82,7 +85,6 @@ export const data = [
     internet: "56 000",
     tasix: "69 500",
     overall: "9 000 000 сум",
-    remove: <DeleteIcon />,
   },
   {
     key: "2",
