@@ -1,36 +1,46 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../App";
 import { ReactComponent as HistoryIcon } from "../../img/historyIcon.svg";
-import { Tooltip } from "antd";
+import { Tooltip, Empty } from "antd";
 
 const HistoryTooltip = () => {
+  const { tableData, setTableData } = useContext(AppContext);
+  const [allCalc, setAllCalc] = useState([]);
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("calculations")) || [];
+    setAllCalc(items);
+  }, [tableData]);
+
   const Content = () => {
     return (
       <div className="history">
         <div className="history-items">
-          <div className="history-item">
-            <div>
-              <span className="history-item__overall">Итого:</span>
-              <span className="history-item__summ">291 692 500 сум</span>
-            </div>
-            <span className="history-item__date">19.11.2020 16:38</span>
-          </div>
-          <div className="history-item">
-            <div>
-              <span className="history-item__overall">Итого:</span>
-              <span className="history-item__summ">291 692 500 сум</span>
-            </div>
-            <span className="history-item__date">19.11.2020 16:38</span>
-          </div>
-          <div className="history-item">
-            <div>
-              <span className="history-item__overall">Итого:</span>
-              <span className="history-item__summ">291 692 500 сум</span>
-            </div>
-            <span className="history-item__date">19.11.2020 16:38</span>
-          </div>
+          {allCalc.length ? (
+            allCalc.map((item) => {
+              return (
+                <div className="history-item" key={item.key}>
+                  <div>
+                    <span className="history-item__overall">Итого:</span>
+                    <span className="history-item__summ">{item.overall}</span>
+                  </div>
+                  <span className="history-item__date">{item.createdAt}</span>
+                </div>
+              );
+            })
+          ) : (
+            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          )}
         </div>
         <div className="history-clear">
-          <p>Очистить историю</p>
+          <p
+            onClick={() => {
+              setTableData([]);
+              localStorage.setItem("calculations", "[]");
+            }}
+          >
+            Очистить историю
+          </p>
         </div>
       </div>
     );
@@ -38,7 +48,7 @@ const HistoryTooltip = () => {
   return (
     <Tooltip
       className="history-tooltip"
-      trigger={["click"]}
+      trigger={["hover"]}
       placement="bottomRight"
       title={<Content />}
     >
