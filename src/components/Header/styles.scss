@@ -1,5 +1,4 @@
 .header {
-
   background: #ffffff;
   box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -13,13 +12,75 @@
 
   &-title {
     text-align: center;
-    &>p {
-        font-size: 1.5rem;
-        margin-bottom: 0;
+    & > p {
+      font-size: 1.5rem;
+      margin-bottom: 0;
     }
   }
 
   &-history {
     text-align: right;
+  }
+}
+
+.ant-tooltip {
+  max-width: unset;
+}
+
+.ant-tooltip-arrow-content {
+  background-color: #fff;
+}
+
+.ant-tooltip-inner {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 0;
+}
+
+.history {
+  color: #000000;
+  width: 510px;
+
+  &-items {
+    padding: 16px 26px 0 26px;
+    border-bottom: 1px solid #8b8b8b;
+  }
+
+  &-item {
+    &:last-child {
+      border-bottom: none;
+    }
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dfdfdf;
+
+    &__overall {
+      font-size: 20px;
+      color: #000000;
+      margin-right: 5px;
+    }
+
+    &__summ {
+      font-size: 20px;
+      color: #285c91;
+      font-weight: bold;
+    }
+
+    &__date {
+      margin-left: auto;
+    }
+  }
+
+  &-clear {
+    padding: 13px 26px;
+
+    & > p {
+      margin-bottom: 0;
+      color: #285c91;
+      font-size: 14px;
+      cursor: pointer;
+    }
   }
 }

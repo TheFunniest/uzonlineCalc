@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactComponent as Logo } from "../../img/logo.svg";
-import { ReactComponent as HistoryIcon } from "../../img/historyIcon.svg";
 import "./styles.scss";
+import Tooltip from "./tooltip";
 
 const Header = () => {
   return (
@@ -15,7 +15,7 @@ const Header = () => {
             <p>Калькулятор услуг ЦОД</p>
           </div>
           <div className="header-history">
-            <HistoryIcon />
+            <Tooltip />
           </div>
         </div>
       </div>
