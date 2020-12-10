@@ -1,14 +1,29 @@
-import { Modal } from "antd";
-import { DrawerContext } from "./index";
+import { message, Modal } from "antd";
+import { AppContext } from "../../App";
 import React, { useContext } from "react";
 
 const DeleteModal = () => {
-  const { showDelete, setShowDelete } = useContext(DrawerContext);
+  const {
+    showDelete,
+    setShowDelete,
+    deletingItem,
+    setTableData,
+    tableData,
+  } = useContext(AppContext);
+  const onOk = () => {
+    console.log(deletingItem);
+    const items = tableData.filter((item) => item.key !== deletingItem.key);
+    setTableData(items);
+    localStorage.setItem("calculations", JSON.stringify(items));
+    setShowDelete(false);
+    message.success("Успешно удалено.");
+  };
   return (
     <Modal
       className="delete-modal"
       width="446px"
       centered
+      onOk={onOk}
       onCancel={() => setShowDelete(false)}
       closable={false}
       okButtonProps={{
