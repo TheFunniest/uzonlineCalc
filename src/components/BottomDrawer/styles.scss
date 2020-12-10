@@ -1,16 +1,51 @@
-.calc {
-}
-
-
-thead>tr>.ant-table-cell {
+thead > tr > .ant-table-cell {
   background-color: #fff !important;
   color: #8b8b8b !important;
   font-size: 12px;
   border-color: #9d9d9d !important;
 }
 
-tbody>tr>.ant-table-cell {
-    font-weight: bold;
-    font-size: 12px;
-    border-color: #DFDFDF;
+tbody > tr > .ant-table-cell {
+  font-weight: bold;
+  font-size: 12px;
+  border-color: #dfdfdf;
+}
+
+.delete-modal {
+  .ant-modal-content {
+    border-radius: 20px;
+  }
+
+  .ant-modal-body {
+    padding: 30px;
+  }
+
+  .ant-modal-footer {
+    border: none;
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 30px;
+
+    .okBtn {
+      height: 48px;
+      width: 174px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      background: #a5b4c2;
+      border-radius: 10px;
+      border: none;
+    }
+
+    .notBtn {
+      height: 48px;
+      width: 174px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      background: #285C91;
+      border-radius: 10px;
+      border: none;
+    }
+  }
 }
