@@ -215,12 +215,51 @@ const CalcForm = () => {
                   " сум";
                 const calculation = {
                   key: uuid(),
-                  vcpu: values.vcpu,
-                  ram: values.ram,
-                  ssd: values.ssd,
-                  sas15k: sas15k === 0 ? "-" : values.sas15k,
-                  sas10k: sas10k === 0 ? "-" : values.sas10k,
-                  sas7k: sas7k === 0 ? "-" : values.sas7k,
+                  vcpu: (
+                    <div>
+                      <p>{values.vcpu}</p>
+                      <p>{numberWithSpaces(vcpu)}</p>
+                    </div>
+                  ),
+                  ram: (
+                    <div>
+                      <p>{values.ram}</p>
+                      <p>{numberWithSpaces(ram)}</p>
+                    </div>
+                  ),
+                  ssd: (
+                    <div>
+                      <p>{values.ssd}</p>
+                      <p>{numberWithSpaces(ssd)}</p>
+                    </div>
+                  ),
+                  sas15k:
+                    sas15k === 0 ? (
+                      "-"
+                    ) : (
+                      <div>
+                        <p>{values.sas15k}</p>
+                        <p>{numberWithSpaces(sas15k)}</p>
+                      </div>
+                    ),
+                  sas10k:
+                    sas10k === 0 ? (
+                      "-"
+                    ) : (
+                      <div>
+                        <p>{values.sas10k}</p>
+                        <p>{numberWithSpaces(sas10k)}</p>
+                      </div>
+                    ),
+                  sas7k:
+                    sas7k === 0 ? (
+                      "-"
+                    ) : (
+                      <div>
+                        <p>{values.sas7k}</p>
+                        <p>{numberWithSpaces(sas7k)}</p>
+                      </div>
+                    ),
                   internet: values.internet,
                   tasix: values.tasix,
                   overall: numberWithSpaces(overall),
