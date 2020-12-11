@@ -28,13 +28,24 @@ const CalcForm = () => {
     );
   };
 
+  let overall = 0;
+
+  tableData.forEach((val) => {
+    overall +=
+      val.overall.length > 0
+        ? Number(val.overall.split("сум")[0].replace(/\s+/g, ""))
+        : 0;
+  });
+
   return (
     <>
       <div className="calc">
         <div className="calc-overall">
           <p>
             <span>Итого:</span>
-            <span className="calc-overall__value">200 сум</span>
+            <span className="calc-overall__value">
+              {numberWithSpaces(overall)} сум
+            </span>
           </p>
         </div>
         <div className="calc-card">
@@ -174,15 +185,14 @@ const CalcForm = () => {
                 const date = new Date();
                 const createdAt =
                   date.getUTCDate() +
-                    "." +
-                    date.getUTCMonth() +
-                    "." +
-                    date.getUTCFullYear() +
-                    "  " +
-                    (date.getUTCHours() + 5) +
-                    ":" +
-                    (date.getUTCMinutes().toString().length <
-                  1
+                  "." +
+                  date.getUTCMonth() +
+                  "." +
+                  date.getUTCFullYear() +
+                  "  " +
+                  (date.getUTCHours() + 5) +
+                  ":" +
+                  (date.getUTCMinutes().toString().length < 1
                     ? "0" + date.getUTCMinutes()
                     : date.getUTCMinutes());
                 const vcpu = values.vcpu ? values.vcpu * 71000 : 0;
@@ -191,8 +201,8 @@ const CalcForm = () => {
                 const sas15k = values.sas15k ? values.sas15k * 800 : 0;
                 const sas10k = values.sas10k ? values.sas10k * 600 : 0;
                 const sas7k = values.sas7k ? values.sas7k * 400 : 0;
-                const internet = values.internet ? values.internet : 0;
-                const tasix = values.tasix ? values.tasix : 0;
+                const internet = values.internet ? values.internet * 100 : 0;
+                const tasix = values.tasix ? values.tasix * 100 : 0;
                 const overall =
                   vcpu +
                   ram +
@@ -205,14 +215,14 @@ const CalcForm = () => {
                   " сум";
                 const calculation = {
                   key: uuid(),
-                  vcpu: numberWithSpaces(vcpu),
-                  ram: numberWithSpaces(ram),
-                  ssd: numberWithSpaces(ssd),
-                  sas15k: sas15k === 0 ? "-" : numberWithSpaces(sas15k),
-                  sas10k: sas10k === 0 ? "-" : numberWithSpaces(sas10k),
-                  sas7k: sas7k === 0 ? "-" : numberWithSpaces(sas7k),
-                  internet: numberWithSpaces(internet),
-                  tasix: numberWithSpaces(tasix),
+                  vcpu: values.vcpu,
+                  ram: values.ram,
+                  ssd: values.ssd,
+                  sas15k: sas15k === 0 ? "-" : values.sas15k,
+                  sas10k: sas10k === 0 ? "-" : values.sas10k,
+                  sas7k: sas7k === 0 ? "-" : values.sas7k,
+                  internet: values.internet,
+                  tasix: values.tasix,
                   overall: numberWithSpaces(overall),
                   createdAt,
                 };
