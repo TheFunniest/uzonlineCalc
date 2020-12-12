@@ -17,51 +17,69 @@ const DeleteIcon = ({ item }) => {
   );
 };
 
-export const columns = [
+export const columnss = [
   {
     title: "vCPU",
     key: "vcpu",
     dataIndex: "vcpu",
+    editable: true,
+    width: 100,
   },
   {
     title: "RAM",
     key: "ram",
     dataIndex: "ram",
+    editable: true,
+    width: 100,
   },
   {
     title: "SSD",
     key: "ssd",
     dataIndex: "ssd",
+    width: 100,
+    editable: true,
   },
   {
     title: "SAS - 15 K RPM",
     key: "sas15k",
     dataIndex: "sas15k",
+    width: 100,
+    editable: true,
   },
   {
     title: "SAS - 10 K RPM",
     key: "sas10k",
     dataIndex: "sas10k",
+    width: 100,
+    editable: true,
   },
   {
     title: "SAS - 7,2 K RPM",
     key: "sas7k",
     dataIndex: "sas7k",
+    width: 100,
+    editable: true,
   },
   {
     title: "Интернет *",
     key: "internet",
     dataIndex: "internet",
+    width: 100,
+    editable: true,
   },
   {
     title: "TAS-IX **",
     key: "tasix",
     dataIndex: "tasix",
+    width: 100,
+    editable: true,
   },
   {
     title: "Итого",
     key: "overall",
     dataIndex: "overall",
+    width: 100,
+    editable: true,
   },
   {
     key: "remove",
@@ -70,39 +88,5 @@ export const columns = [
     render: (text, record) => {
       return <DeleteIcon item={record} />;
     },
-  },
-];
-
-export const data = [
-  {
-    key: "1",
-    vcpu: "12 000",
-    ram: "88 000",
-    ssd: "66 000",
-    sas15k: "54 200",
-    sas10k: "-",
-    sas7k: "-",
-    internet: "56 000",
-    tasix: "69 500",
-    overall: "9 000 000 сум",
-  },
-  {
-    key: "2",
-    vcpu: "12 000",
-    ram: "88 000",
-    ssd: "66 000",
-    sas15k: "54 200",
-    sas10k: "-",
-    sas7k: "-",
-    internet: "56 000",
-    tasix: "69 500",
-    overall: "9 000 000 сум",
-    remove: (
-      <RemoveIcon
-        style={{
-          cursor: "pointer",
-        }}
-      />
-    ),
   },
 ];
