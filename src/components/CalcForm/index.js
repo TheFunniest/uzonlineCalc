@@ -192,7 +192,7 @@ const CalcForm = () => {
                   "  " +
                   (date.getUTCHours() + 5) +
                   ":" +
-                  (date.getUTCMinutes().toString().length < 1
+                  (date.getUTCMinutes().toString().length <= 1
                     ? "0" + date.getUTCMinutes()
                     : date.getUTCMinutes());
                 const vcpu = values.vcpu ? values.vcpu * 71000 : 0;
@@ -201,8 +201,8 @@ const CalcForm = () => {
                 const sas15k = values.sas15k ? values.sas15k * 800 : 0;
                 const sas10k = values.sas10k ? values.sas10k * 600 : 0;
                 const sas7k = values.sas7k ? values.sas7k * 400 : 0;
-                const internet = values.internet ? values.internet * 100 : 0;
-                const tasix = values.tasix ? values.tasix * 100 : 0;
+                // const internet = values.internet ? values.internet: 0;
+                // const tasix = values.tasix ? values.tasix * 100 : 0;
                 const overall =
                   vcpu +
                   ram +
@@ -210,8 +210,8 @@ const CalcForm = () => {
                   sas15k +
                   sas10k +
                   sas7k +
-                  internet +
-                  tasix +
+                  // internet +
+                  // tasix +
                   " сум";
                 const calculation = {
                   key: uuid(),
