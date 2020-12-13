@@ -2,6 +2,7 @@ thead > tr > .ant-table-cell {
   background-color: #fff !important;
   color: #8b8b8b !important;
   font-size: 12px;
+  text-align: center;
   border-color: #9d9d9d !important;
 }
 
@@ -9,6 +10,7 @@ tbody > tr > .ant-table-cell {
   font-weight: bold;
   font-size: 12px;
   border-color: #dfdfdf;
+  text-align: center;
 }
 
 .delete-modal {
@@ -48,4 +50,9 @@ tbody > tr > .ant-table-cell {
       border: none;
     }
   }
+}
+
+
+.editable-cell-value-wrap {
+  text-align: center;
 }

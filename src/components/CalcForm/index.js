@@ -34,13 +34,8 @@ const CalcForm = () => {
     return summ === 0 ? (
       "-"
     ) : (
-      <div>
-        <p
-          style={{
-            textAlign: "center",
-            height: 32
-          }}
-        >
+      <div className="column-item">
+        <p>
           {value + " " + type}
         </p>
         <p>{numberWithSpaces(summ)}</p>
@@ -224,8 +219,7 @@ const CalcForm = () => {
                 const createdAt = calcCreatedAt();
                 // const internet = values.internet ? values.internet: 0;
                 // const tasix = values.tasix ? values.tasix * 100 : 0;
-                const overall =
-                  vcpu + ram + ssd + sas15k + sas10k + sas7k;
+                const overall = vcpu + ram + ssd + sas15k + sas10k + sas7k;
                 const calculation = {
                   key: uuid(),
                   vcpu: calcValue(values.vcpu, vcpu, "шт."),

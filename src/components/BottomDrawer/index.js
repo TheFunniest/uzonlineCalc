@@ -85,9 +85,6 @@ const BottomDrawer = ({ visible, onClose }) => {
       ) : (
         <div
           className="editable-cell-value-wrap"
-          style={{
-            paddingRight: 24,
-          }}
           onClick={toggleEdit}
         >
           {children}
@@ -130,7 +127,6 @@ const BottomDrawer = ({ visible, onClose }) => {
           <p
             style={{
               textAlign: "center",
-              height: 32,
             }}
           >
             {item + " " + type}

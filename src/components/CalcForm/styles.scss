@@ -121,3 +121,9 @@
     margin-bottom: 0;
   }
 }
+
+.column-item {
+  & > p {
+    text-align: center;
+  }
+}
