@@ -15,7 +15,7 @@ const CalcForm = () => {
   const [form] = Form.useForm();
   const { tableData, setTableData } = useContext(AppContext);
   const numberWithSpaces = (x) => {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " сум";
   };
   const uuid = () => {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
@@ -29,6 +29,38 @@ const CalcForm = () => {
   };
 
   let overall = 0;
+
+  const calcValue = (value, summ, type) => {
+    return summ === 0 ? (
+      "-"
+    ) : (
+      <div>
+        <p
+          style={{
+            textAlign: "center",
+            height: 32
+          }}
+        >
+          {value + " " + type}
+        </p>
+        <p>{numberWithSpaces(summ)}</p>
+      </div>
+    );
+  };
+
+  const calcCreatedAt = () => {
+    const date = new Date();
+    const day = date.getUTCDate();
+    const month = date.getUTCMonth() + 1;
+    const year = date.getUTCFullYear();
+    const hours = date.getUTCHours() + 5;
+    console.log(date.getTimezoneOffset());
+    const minutes =
+      date.getUTCMinutes().toString().length <= 1
+        ? "0" + date.getUTCMinutes().toString()
+        : date.getUTCMinutes();
+    return day + "." + month + "." + year + "  " + hours + ":" + minutes;
+  };
 
   tableData.forEach((val) => {
     overall +=
@@ -44,7 +76,7 @@ const CalcForm = () => {
           <p>
             <span>Итого:</span>
             <span className="calc-overall__value">
-              {numberWithSpaces(overall)} сум
+              {numberWithSpaces(overall)}
             </span>
           </p>
         </div>
@@ -182,86 +214,28 @@ const CalcForm = () => {
             onClick={() => {
               form.validateFields().then((values) => {
                 form.resetFields();
-                const date = new Date();
-                const createdAt =
-                  date.getUTCDate() +
-                  "." +
-                  date.getUTCMonth() +
-                  "." +
-                  date.getUTCFullYear() +
-                  "  " +
-                  (date.getUTCHours() + 5) +
-                  ":" +
-                  (date.getUTCMinutes().toString().length <= 1
-                    ? "0" + date.getUTCMinutes()
-                    : date.getUTCMinutes());
+
                 const vcpu = values.vcpu ? values.vcpu * 71000 : 0;
                 const ram = values.ram ? values.ram * 10000 : 0;
                 const ssd = values.ssd ? values.ssd * 2200 : 0;
                 const sas15k = values.sas15k ? values.sas15k * 800 : 0;
                 const sas10k = values.sas10k ? values.sas10k * 600 : 0;
                 const sas7k = values.sas7k ? values.sas7k * 400 : 0;
+                const createdAt = calcCreatedAt();
                 // const internet = values.internet ? values.internet: 0;
                 // const tasix = values.tasix ? values.tasix * 100 : 0;
                 const overall =
-                  vcpu +
-                  ram +
-                  ssd +
-                  sas15k +
-                  sas10k +
-                  sas7k +
-                  // internet +
-                  // tasix +
-                  " сум";
+                  vcpu + ram + ssd + sas15k + sas10k + sas7k;
                 const calculation = {
                   key: uuid(),
-                  vcpu: (
-                    <div>
-                      <p>{values.vcpu}</p>
-                      <p>{numberWithSpaces(vcpu)}</p>
-                    </div>
-                  ),
-                  ram: (
-                    <div>
-                      <p>{values.ram}</p>
-                      <p>{numberWithSpaces(ram)}</p>
-                    </div>
-                  ),
-                  ssd: (
-                    <div>
-                      <p>{values.ssd}</p>
-                      <p>{numberWithSpaces(ssd)}</p>
-                    </div>
-                  ),
-                  sas15k:
-                    sas15k === 0 ? (
-                      "-"
-                    ) : (
-                      <div>
-                        <p>{values.sas15k}</p>
-                        <p>{numberWithSpaces(sas15k)}</p>
-                      </div>
-                    ),
-                  sas10k:
-                    sas10k === 0 ? (
-                      "-"
-                    ) : (
-                      <div>
-                        <p>{values.sas10k}</p>
-                        <p>{numberWithSpaces(sas10k)}</p>
-                      </div>
-                    ),
-                  sas7k:
-                    sas7k === 0 ? (
-                      "-"
-                    ) : (
-                      <div>
-                        <p>{values.sas7k}</p>
-                        <p>{numberWithSpaces(sas7k)}</p>
-                      </div>
-                    ),
-                  internet: values.internet,
-                  tasix: values.tasix,
+                  vcpu: calcValue(values.vcpu, vcpu, "шт."),
+                  ram: calcValue(values.ram, ram, "GB"),
+                  ssd: calcValue(values.ssd, ssd, "GB"),
+                  sas15k: calcValue(values.sas15k, sas15k, "GB"),
+                  sas10k: calcValue(values.sas10k, sas10k, "GB"),
+                  sas7k: calcValue(values.sas7k, sas7k, "GB"),
+                  internet: values.internet ? values.internet + " Мбит/с" : "-",
+                  tasix: values.tasix ? values.tasix + " Мбит/с" : "-",
                   overall: numberWithSpaces(overall),
                   createdAt,
                 };

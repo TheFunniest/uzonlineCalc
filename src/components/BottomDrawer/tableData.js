@@ -79,7 +79,6 @@ export const columnss = [
     key: "overall",
     dataIndex: "overall",
     width: 100,
-    editable: true,
   },
   {
     key: "remove",

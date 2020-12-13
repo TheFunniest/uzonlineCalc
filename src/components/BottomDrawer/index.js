@@ -43,7 +43,9 @@ const BottomDrawer = ({ visible, onClose }) => {
       form.setFieldsValue({
         [dataIndex]: record[dataIndex]?.props
           ? record[dataIndex]?.props?.children[0]?.props?.children
-          : record[dataIndex],
+          : record[dataIndex] !== "-"
+          ? record[dataIndex]
+          : 0,
       });
     };
 
@@ -107,21 +109,33 @@ const BottomDrawer = ({ visible, onClose }) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
   };
 
-  const deleteSpaces = (x) => Number(x.replace(/\s+/g, ""));
+  const deleteSpaces = (x) => {
+    return Number(x.replace(/\s+/g, "").split("сум")[0]);
+  };
 
   const handleSave = (row, dataIndex) => {
     const newData = [...tableData];
     const index = newData.findIndex((item) => row.key === item.key);
     let item = newData[index];
 
-    const columnItem = (item, value) => {
+    const columnItem = (item, value, type) => {
       if (value === 0) {
-        return item;
+        if (item > 0) {
+          return item + " " + type;
+        }
+        return "-";
       }
       return item > 0 ? (
         <div>
-          <p>{item}</p>
-          <p>{numberWithSpaces(item * value)}</p>
+          <p
+            style={{
+              textAlign: "center",
+              height: 32,
+            }}
+          >
+            {item + " " + type}
+          </p>
+          <p>{numberWithSpaces(item * value) + " сум"}</p>
         </div>
       ) : (
         "-"
@@ -132,10 +146,12 @@ const BottomDrawer = ({ visible, onClose }) => {
       const overall = deleteSpaces(row["overall"]?.split("сум")[0]);
       let previousValue = null;
       let currentValue = null;
+      console.log(overall)
       if (item[dataIndex] === "-") {
         currentValue = deleteSpaces(
           row[dataIndex]?.props?.children[1]?.props?.children
         );
+
         return numberWithSpaces(overall + currentValue) + " сум";
       }
       if (row[dataIndex] === "-") {
@@ -150,33 +166,34 @@ const BottomDrawer = ({ visible, onClose }) => {
       currentValue = deleteSpaces(
         row[dataIndex]?.props?.children[1]?.props?.children
       );
+
       return numberWithSpaces(overall + currentValue - previousValue) + " сум";
     };
 
     switch (dataIndex) {
       case "vcpu":
-        row[dataIndex] = columnItem(row[dataIndex], 71000);
+        row[dataIndex] = columnItem(row[dataIndex], 71000, "шт.");
         break;
       case "ram":
-        row[dataIndex] = columnItem(row[dataIndex], 10000);
+        row[dataIndex] = columnItem(row[dataIndex], 10000, "GB");
         break;
       case "ssd":
-        row[dataIndex] = columnItem(row[dataIndex], 2200);
+        row[dataIndex] = columnItem(row[dataIndex], 2200, "GB");
         break;
       case "sas15k":
-        row[dataIndex] = columnItem(row[dataIndex], 800);
+        row[dataIndex] = columnItem(row[dataIndex], 800, "GB");
         break;
       case "sas10k":
-        row[dataIndex] = columnItem(row[dataIndex], 600);
+        row[dataIndex] = columnItem(row[dataIndex], 600, "GB");
         break;
       case "sas7k":
-        row[dataIndex] = columnItem(row[dataIndex], 400);
+        row[dataIndex] = columnItem(row[dataIndex], 400, "GB");
         break;
       case "internet":
-        row[dataIndex] = columnItem(row[dataIndex], 0);
+        row[dataIndex] = columnItem(row[dataIndex], 0, "Мбит/с");
         break;
       case "tasix":
-        row[dataIndex] = columnItem(row[dataIndex], 0);
+        row[dataIndex] = columnItem(row[dataIndex], 0, "Мбит/с");
         break;
       default:
         return;
@@ -209,6 +226,15 @@ const BottomDrawer = ({ visible, onClose }) => {
     <Drawer
       closable={false}
       placement="bottom"
+      title={
+        <p
+          style={{
+            textAlign: "center",
+          }}
+        >
+          Калькулятор цен ЦОД
+        </p>
+      }
       onClose={onClose}
       visible={visible}
       height="auto"
