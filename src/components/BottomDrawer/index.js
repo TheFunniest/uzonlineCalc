@@ -1,14 +1,21 @@
 import { Drawer, Table, Form, InputNumber } from "antd";
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+  createContext,
+} from "react";
 import { columnss } from "./tableData";
 import { AppContext } from "../../App";
 import "./styles.scss";
+import ExportToExel from "../ExportToExel";
 import DeleteModal from "./deleteModal";
 
-const EditableContext = React.createContext();
+const EditableContext = createContext();
 
 const BottomDrawer = ({ visible, onClose }) => {
-  const { tableData, setTableData } = useContext(AppContext);
+  const { tableData, setTableData, sizeTypes } = useContext(AppContext);
   const EditableRow = ({ index, ...props }) => {
     const [form] = Form.useForm();
     return (
@@ -83,10 +90,7 @@ const BottomDrawer = ({ visible, onClose }) => {
           <p>{record[dataIndex]?.props?.children[1]?.props?.children} </p>
         </>
       ) : (
-        <div
-          className="editable-cell-value-wrap"
-          onClick={toggleEdit}
-        >
+        <div className="editable-cell-value-wrap" onClick={toggleEdit}>
           {children}
         </div>
       );
@@ -142,7 +146,6 @@ const BottomDrawer = ({ visible, onClose }) => {
       const overall = deleteSpaces(row["overall"]?.split("сум")[0]);
       let previousValue = null;
       let currentValue = null;
-      console.log(overall)
       if (item[dataIndex] === "-") {
         currentValue = deleteSpaces(
           row[dataIndex]?.props?.children[1]?.props?.children
@@ -171,19 +174,39 @@ const BottomDrawer = ({ visible, onClose }) => {
         row[dataIndex] = columnItem(row[dataIndex], 71000, "шт.");
         break;
       case "ram":
-        row[dataIndex] = columnItem(row[dataIndex], 10000, "GB");
+        row[dataIndex] = columnItem(
+          row[dataIndex],
+          sizeTypes.ram.price,
+          sizeTypes.ram.type
+        );
         break;
       case "ssd":
-        row[dataIndex] = columnItem(row[dataIndex], 2200, "GB");
+        row[dataIndex] = columnItem(
+          row[dataIndex],
+          sizeTypes.ssd.price,
+          sizeTypes.ssd.type
+        );
         break;
       case "sas15k":
-        row[dataIndex] = columnItem(row[dataIndex], 800, "GB");
+        row[dataIndex] = columnItem(
+          row[dataIndex],
+          sizeTypes.sas15k.price,
+          sizeTypes.sas15k.type
+        );
         break;
       case "sas10k":
-        row[dataIndex] = columnItem(row[dataIndex], 600, "GB");
+        row[dataIndex] = columnItem(
+          row[dataIndex],
+          sizeTypes.sas10k.price,
+          sizeTypes.sas10k.type
+        );
         break;
       case "sas7k":
-        row[dataIndex] = columnItem(row[dataIndex], 400, "GB");
+        row[dataIndex] = columnItem(
+          row[dataIndex],
+          sizeTypes.sas7k.price,
+          sizeTypes.sas7k.type
+        );
         break;
       case "internet":
         row[dataIndex] = columnItem(row[dataIndex], 0, "Мбит/с");
@@ -218,22 +241,24 @@ const BottomDrawer = ({ visible, onClose }) => {
     };
   });
 
+  const drawerTitle = (
+    <p
+      style={{
+        textAlign: "center",
+      }}
+    >
+      Калькулятор цен ЦОД
+    </p>
+  );
+
   return (
     <Drawer
       closable
       placement="bottom"
-      title={
-        <p
-          style={{
-            textAlign: "center",
-          }}
-        >
-          Калькулятор цен ЦОД
-        </p>
-      }
+      title={drawerTitle}
       onClose={onClose}
       visible={visible}
-      height="auto"
+      height="100vh"
     >
       <div className="container">
         <Table
@@ -247,6 +272,14 @@ const BottomDrawer = ({ visible, onClose }) => {
             },
           }}
         />
+      </div>
+      <div
+        style={{
+          margin: "10px",
+          textAlign: "center",
+        }}
+      >
+        <ExportToExel />
       </div>
       <DeleteModal />
     </Drawer>
