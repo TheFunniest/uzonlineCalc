@@ -220,7 +220,7 @@ const BottomDrawer = ({ visible, onClose }) => {
 
   return (
     <Drawer
-      closable={false}
+      closable
       placement="bottom"
       title={
         <p
